@@ -1,10 +1,11 @@
 #!/bin/bash
 
 version=0.0.1
+platform=linux/amd64,linux/arm64,linux/arm/v7
 
 build_multi_arch() {
-    docker buildx build -t waggle/plugin-base:$version-micro --platform linux/amd64,linux/arm64,linux/arm/v7 --load micro
-    docker buildx build -t waggle/plugin-base:$version-mega --platform linux/amd64,linux/arm64,linux/arm/v7 --load mega
+    docker buildx build -t waggle/plugin-base:$version-micro --platform "$platform" --load micro
+    docker buildx build -t waggle/plugin-base:$version-mega --platform "$platform" --load mega
 }
 
 build_native() {
@@ -12,4 +13,8 @@ build_native() {
     docker build -t waggle/plugin-base:$version-mega mega
 }
 
-build_native
+case "$1" in
+"") build_native ;;
+push) build_multi_arch ;;
+*) echo "Please use either \"$0\" to build locally or \"$0 push\" to push multi-arch image."; exit 1 ;;
+esac
