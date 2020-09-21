@@ -7,6 +7,7 @@ We are developing the following base images:
 * `micro` - Small `ubuntu:focal` based image which includes:
   * Python 3
   * pywaggle
+  * git
 
 * `mega` - Large `ubuntu:focal` based image which includes:
   * Python 3
@@ -15,5 +16,6 @@ We are developing the following base images:
   * Tensorflow
   * ROS Noetic
   * pywaggle
+  * git
 
 Image builds should follow the naming convention `waggle/plugin-base:x.y.z-type`. For example, version 1.0.4 of a mega image should be named `waggle/plugin-base:1.0.4-mega`.
