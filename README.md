@@ -4,8 +4,12 @@ This repo contains Dockerfiles and tools for building our plugin base images.
 
 We are developing the following base images:
 
-* `micro` - Small `python:3` with pywaggle pre-installed.
+* `micro` - Small `ubuntu:focal` based image which includes:
+  * Python 3
+  * pywaggle
+
 * `mega` - Large `ubuntu:focal` based image which includes:
+  * Python 3
   * OpenCV
   * PyTorch
   * Tensorflow
