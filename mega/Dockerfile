@@ -1,4 +1,10 @@
-FROM ros:noetic-ros-base-focal
+# Using different FROM images depending on arch
+FROM --platform=linux/amd64 ros:noetic-ros-base-focal as from-amd64
+FROM --platform=linux/arm64 nvcr.io/nvidia/l4t-base:r32.4.3 as from-arm64
+
+ARG TARGETARCH
+FROM from-$TARGETARCH
+
 LABEL description="Large base image containing Python 3, pywaggle and major frameworks such as PyTorch, Tensorflow, OpenCV and ROS."
 LABEL maintainer="Sean Shahkarami <sean.shahkarami@gmail.com>"
 LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/mega"

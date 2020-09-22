@@ -5,7 +5,7 @@ IMAGE=micro
 all: image
 
 image:
-	docker build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" .
+	docker buildx build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" --load .
 
 push:
 	docker buildx build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" --platform "$(PLATFORM)" --push .
