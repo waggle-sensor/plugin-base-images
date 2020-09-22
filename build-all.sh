@@ -1,7 +1,8 @@
 #!/bin/bash
 
 version=0.0.1
-platform=linux/amd64,linux/arm64,linux/arm/v7
+#platform=linux/amd64,linux/arm64,linux/arm/v7
+platform=linux/amd64,linux/arm64
 
 build_multi_arch() {
     docker buildx build -t waggle/plugin-base:$version-micro --platform "$platform" --push micro
