@@ -1,11 +1,11 @@
-RELEASE?=0.0.1
+RELEASE?=0.0.0
 PLATFORM?=linux/amd64
 IMAGE=mega
 
 all: image
 
 image:
-	docker buildx build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" --platform "$(PLATFORM)" --load .
+	docker build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" .
 
 push:
 	docker buildx build -t "waggle/plugin-base:$(RELEASE)-$(IMAGE)" --platform "$(PLATFORM)" --push .
