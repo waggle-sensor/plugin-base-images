@@ -1,0 +1,40 @@
+# using different FROM images depending on arch
+FROM nvcr.io/nvidia/cuda:11.0-cudnn8-runtime-ubuntu18.04
+LABEL description="Machine learning base image containing Python 3, pywaggle and major frameworks such as PyTorch, Tensorflow, and OpenCV."
+LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
+LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/ml"
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# setup timezone
+RUN echo 'Etc/UTC' > /etc/timezone && \
+    ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+# install system packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    nano \
+    python3-pip \
+    python3-opencv \
+    gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
+
+# install major ml packages
+RUN pip3 install --no-cache-dir --upgrade pip setuptools \
+  && pip3 install --no-cache-dir \
+    opencv-python==4.4.0.46 \
+    tensorflow \
+    torch \
+    torchvision \
+    torchaudio \
+    onnx \
+    numpy \
+    numba \
+    pandas \
+    scipy \
+    scikit-learn \
+    jupyterlab
+
+# install waggle packages
+RUN pip3 install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle@v0.39.1

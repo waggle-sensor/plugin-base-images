@@ -1,6 +1,6 @@
-RELEASE?=0.0.0
-PLATFORM?=linux/amd64,linux/arm64,linux/arm/v7
-IMAGE=micro
+RELEASE?=1.0.0
+PLATFORM?=linux/amd64,linux/arm64
+IMAGE=base1.0.0-ros2-foxy
 
 all: image
 
