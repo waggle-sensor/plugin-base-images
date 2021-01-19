@@ -1,7 +1,7 @@
 FROM waggle/plugin-base:1.0.0-base
-LABEL description="Small base image containing Python 3 and pywaggle."
+LABEL description="Waggle base image containing ROS2 foxy."
 LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
-LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/base"
+LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/base-ros2"
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8

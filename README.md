@@ -30,7 +30,10 @@ We are developing the following base images:
   * nano
   * git
 
-* `base-ros2` - The `base` Ubuntu image which includes:
+* `base-ros` - The `base` Waggle image which includes:
+  * ros noetic
+
+* `base-ros2` - The `base` Waggle image which includes:
   * ros2 foxy
 
 Image builds should follow the naming convention `waggle/plugin-base:x.y.z-type`. For example, version 1.0.4 of a mega image should be named `waggle/plugin-base:1.0.4-mega`.
