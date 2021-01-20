@@ -1,7 +1,7 @@
 # using different FROM images depending on arch
 FROM ubuntu:focal
 LABEL description="Large base image containing Python 3, pywaggle and major frameworks such as PyTorch, Tensorflow, OpenCV and ROS."
-LABEL maintainer="Sean Shahkarami <sean.shahkarami@gmail.com>"
+LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
 LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/mega"
 
 ENV LANG=C.UTF-8
