@@ -1,4 +1,4 @@
-FROM waggle/plugin-base:1.0.0-base
+FROM waggle/plugin-base:1.1.0-base
 LABEL description="Waggle base image containing ROS2 foxy."
 LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
 LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/base-ros2"

@@ -1,6 +1,6 @@
-RELEASE?=1.0.0
+RELEASE?=1.1.0
 PLATFORM?=linux/amd64,linux/arm64
-IMAGE=base1.0.0-ros-noetic
+IMAGE=base1.1.0-ros-noetic
 
 all: image
 

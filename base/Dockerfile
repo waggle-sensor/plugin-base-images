@@ -16,4 +16,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # install waggle packages
-RUN pip3 install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle@v0.39.1
+RUN pip3 install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle
