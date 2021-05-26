@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # install major ml packages
 RUN pip3 install --no-cache-dir --upgrade pip setuptools \
   && pip3 install --no-cache-dir \
-    opencv-python==4.4.0.46 \
+    opencv-python==4.5.1.48 \
     tensorflow \
     torch \
     torchvision \

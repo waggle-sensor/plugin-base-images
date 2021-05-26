@@ -37,12 +37,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
-# install OpenCV
+# install OpenCV 4.5.1
 # numpy 1.19.5 (latest) crashes in NX
 # possibly related to (https://github.com/numpy/numpy/issues/9532)
 RUN pip3 install --no-cache-dir --upgrade pip setuptools \
   && pip3 install --no-cache-dir \
-    opencv-python==4.4.0.46
+    opencv-python==4.5.1.48 \
+    numpy==1.19.3
 
 # install waggle packages
 RUN pip3 install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle
