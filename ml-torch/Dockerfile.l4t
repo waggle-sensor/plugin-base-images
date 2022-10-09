@@ -1,0 +1,29 @@
+FROM waggle/plugin-base:1.1.1-ml
+
+RUN apt-get update \
+  && apt-get install -y \
+  libjpeg-dev \
+  zlib1g-dev \
+  libpython3-dev \
+  libavcodec-dev \
+  libavformat-dev \
+  libswscale-dev \
+  wget
+
+# Download and install pre-compiled torch 1.9.0 on Jetson
+RUN pip3 install -U pip \
+  && pip3 install Cython \
+  && wget -O torch-1.9.0-cp36-cp36m-linux_aarch64.whl https://nvidia.box.com/shared/static/h1z9sw4bb1ybi0rm3tu8qdj8hs05ljbm.whl \
+  && pip3 install --no-cache numpy torch-1.9.0-cp36-cp36m-linux_aarch64.whl \
+  && rm torch-1.9.0-cp36-cp36m-linux_aarch64.whl
+
+# This requires CUDA 10.2 dev, not runtime libraries
+# Waggle 1.8.8 OS fails to provide the following header file
+# ,causing the installation fails
+# ls /usr/local/cuda/include | grep cusparse
+# cusparse.h
+# cusparse_v2.h
+RUN git clone --branch v0.10.0 https://github.com/pytorch/vision \
+  && cd vision \
+  && export BUILD_VERSION=0.10.0 \
+  && python3 setup.py install

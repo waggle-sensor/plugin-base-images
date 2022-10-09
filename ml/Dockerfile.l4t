@@ -29,6 +29,7 @@ ENV LC_ALL=C.UTF-8
 # add the ROS deb repo to the apt sources list
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    nano \
     python3-pip \
     python3-opencv \
     curl \

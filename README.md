@@ -30,6 +30,9 @@ We are developing the following base images:
   * nano
   * git
 
+* `ml-torch` - The `ml` Waggle image with newer Torch
+  * PyTorch 1.9.0 w/ torchvision 1.10.0
+
 * `base-ros` - The `base` Waggle image which includes:
   * ros noetic
 
