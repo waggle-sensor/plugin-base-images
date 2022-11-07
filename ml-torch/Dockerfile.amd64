@@ -1,0 +1,8 @@
+FROM waggle/plugin-base:1.1.1-ml
+
+RUN pip3 install -U pip \
+  && pip3 install \
+  torch==1.9.1 \
+  torchvision==0.10.1 \
+  torchaudio==0.9.1
+  

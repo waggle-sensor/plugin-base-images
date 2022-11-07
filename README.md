@@ -31,7 +31,7 @@ We are developing the following base images:
   * git
 
 * `ml-torch` - The `ml` Waggle image with newer Torch
-  * PyTorch 1.9.0 w/ torchvision 1.10.0
+  * PyTorch 1.9 w/ torchvision 1.10
 
 * `base-ros` - The `base` Waggle image which includes:
   * ros noetic
@@ -67,3 +67,29 @@ apt-get update
 apt-get install libcudnn8=8.0.5.39-1+cuda11.0
 ```
 
+## Multi-arch support
+Some container images need a specific version of dependent libraries different from architectures. To support applications that run on arm64 and amd64, the base images need to be multi-arch if possible. Below are instructions on how to create a multi-arch container image,
+
+```bash
+docker buildx build \
+  --platform linux/amd64 \
+  -t waggle/plugin-base:1.1.1-ml-torch1.9-amd64 \
+  -f ml-torch/Dockerfile.amd64 \
+  --load .
+```
+
+```bash
+docker buildx build \
+  --platform linux/arm64 \
+  -t waggle/plugin-base:1.1.1-ml-torch1.9-arm64 \
+  -f ml-torch/Dockerfile.l4t \
+  --load .
+```
+
+Then, create a multi-arch image,
+```bash
+docker manifest create waggle/plugin-base:1.1.1-ml-torch1.9 \
+  waggle/plugin-base:1.1.1-ml-torch1.9-amd64 \
+  waggle/plugin-base:1.1.1-ml-torch1.9-arm64
+docker manifest push waggle/plugin-base:1.1.1-ml-torch1.9
+```
