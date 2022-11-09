@@ -5,4 +5,11 @@ RUN pip3 install -U pip \
   torch==1.9.1 \
   torchvision==0.10.1 \
   torchaudio==0.9.1
+
+# GPG key needs to be updated
+# https://forums.developer.nvidia.com/t/notice-cuda-linux-repository-key-rotation/212772
+RUN apt-key del 7fa2af80
+ADD https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb .
+RUN dpkg -i cuda-keyring_1.0-1_all.deb \
+  && rm /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list
   
