@@ -23,6 +23,10 @@ FROM waggle/plugin-base:1.1.1-ml-tensorflow2.3-amd64
 ...
 ```
 
+If your plugin requires GPU access, make sure to select a k3s node with GPU capabilities. This ensures that TensorFlow can utilize the GPU device effectively. For example:
+```bash
+pluginctl run --name test --selector resource.gpu=true 10.31.81.1:5000/local/temp
+```
 ## Building the Images
 
 - Dockerfile.l4t
