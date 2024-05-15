@@ -1,0 +1,30 @@
+FROM nvcr.io/nvidia/cuda:11.0-cudnn8-runtime-ubuntu18.04
+LABEL description="Machine learning base image containing Python 3, pywaggle, and Tensorflow"
+LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
+LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/ml-tensorflow"
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# setup timezone
+RUN echo 'Etc/UTC' > /etc/timezone && \
+    ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+# install system packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    nano \
+    curl \
+    python3-pip \
+    gnupg2 \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && ln -s /usr/bin/pip3 /usr/bin/pip
+
+# install tensorflow
+RUN pip install --no-cache-dir --upgrade pip setuptools \
+  && pip install --no-cache-dir \
+    tensorflow
+
+# install waggle packages
+RUN pip install pywaggle[all]
