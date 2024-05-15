@@ -8,15 +8,21 @@
 # It targets NVIDIA's JetPack 4.4.1 platform.
 #
 FROM nvcr.io/nvidia/l4t-tensorflow:r32.4.4-tf2.3-py3
-LABEL description="Large base image containing Python 3, pywaggle and Tensorflow"
+LABEL description="Large base image containing Python 3, pywaggle, and Tensorflow"
 LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
 LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/ml-tensorflow"
-RUN apt-get update -y \
-    && apt-get upgrade -y \
-    && apt-get install python3-pip -y \
-    && ln -s /usr/bin/python3 /usr/bin/python \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    nano \
+    python3-pip \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
-    && pip install --upgrade pip
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && pip install --upgrade pip \
+    curl \
+    wget \ 
+    gnupg2 \
+    lsb-release \
+    && rm -rf /var/lib/apt/lists/*
 
 # install waggle packages
-RUN pip install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle
+RUN pip install pywaggle[all]
