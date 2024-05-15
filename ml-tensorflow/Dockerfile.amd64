@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # install tensorflow
 RUN pip install --no-cache-dir --upgrade pip setuptools \
   && pip install --no-cache-dir \
-    tensorflow
+    tensorflow==2.3.0
 
 # install waggle packages
 RUN pip install pywaggle[all]
