@@ -1,0 +1,22 @@
+# This image builds on top of NVIDIA's L4T ML image:
+# https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-tensorflow
+#
+# According to the catalog, this includes:
+# * 
+# * TensorFlow 2.3
+#
+# It targets NVIDIA's JetPack 4.4.1 platform.
+#
+FROM nvcr.io/nvidia/l4t-tensorflow:r32.4.4-tf2.3-py3
+LABEL description="Large base image containing Python 3, pywaggle and Tensorflow"
+LABEL maintainer="Sage Waggle Team <sage-waggle@sagecontinuum.org>"
+LABEL url="https://github.com/waggle-sensor/plugin-base-images/tree/master/ml-tensorflow"
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install python3-pip -y \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && ln -s /usr/bin/pip3 /usr/bin/pip \
+    && pip install --upgrade pip
+
+# install waggle packages
+RUN pip install --no-cache-dir git+https://github.com/waggle-sensor/pywaggle
